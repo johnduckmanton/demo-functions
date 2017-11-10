@@ -11,7 +11,8 @@ using ImageResizer;
 
 // Parameters...
 static string API_KEY = Environment.GetEnvironmentVariable("VISION_API_KEY");
-static string API_ENDPOINT = "https://westus.api.cognitive.microsoft.com/vision/v1.0/analyze?visualFeatures=Categories,Tags,Description,Faces,ImageType,Color";
+static string API_ENDPOINT = Environment.GetEnvironmentVariable("VISION_API_ENDPOINT");
+
 
 public static void Run(CloudBlockBlob triggerBlob, Stream outputBlob, TraceWriter log)
 {  
@@ -117,8 +118,11 @@ public static dynamic callCognitiveServiceApi(dynamic request_obj, TraceWriter l
     var client = new HttpClient();
     var content = new StringContent(JsonConvert.SerializeObject(request_obj), System.Text.Encoding.UTF8, "application/json");
     
+    // Add the parameters we want to the endpoint
+    var endpoint = API_ENDPOINT + "?visualFeatures=Categories,Tags,Description,Faces,ImageType,Color";
+
     content.Headers.Add("Ocp-Apim-Subscription-Key", API_KEY);
-    var resp = client.PostAsync(API_ENDPOINT, content).Result;
+    var resp = client.PostAsync(endpoint, content).Result;
     dynamic resp_obj = JsonConvert.DeserializeObject( resp.Content.ReadAsStringAsync().Result );
     return resp_obj;
 }

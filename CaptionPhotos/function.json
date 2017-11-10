@@ -5,13 +5,13 @@
       "type": "blobTrigger",
       "direction": "in",
       "path": "photo-in/{name}",
-      "connection": "jrddatastorage001"
+      "connection": "AzureWebJobsStorage"
     },
     {
       "type": "blob",
       "name": "outputBlob",
       "path": "photo-out/{DateTime}.jpg",
-      "connection": "jrddatastorage001",
+      "connection": "AzureWebJobsStorage",
       "direction": "out"
     }
   ],
