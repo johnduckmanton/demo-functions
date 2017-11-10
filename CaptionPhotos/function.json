@@ -1,0 +1,19 @@
+{
+  "bindings": [
+    {
+      "name": "triggerBlob",
+      "type": "blobTrigger",
+      "direction": "in",
+      "path": "photo-in/{name}",
+      "connection": "jrddatastorage001"
+    },
+    {
+      "type": "blob",
+      "name": "outputBlob",
+      "path": "photo-out/{DateTime}.jpg",
+      "connection": "jrddatastorage001",
+      "direction": "out"
+    }
+  ],
+  "disabled": false
+}
