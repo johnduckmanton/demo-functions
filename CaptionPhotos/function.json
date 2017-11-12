@@ -4,13 +4,13 @@
       "name": "triggerBlob",
       "type": "blobTrigger",
       "direction": "in",
-      "path": "photo-in/{name}",
+      "path": "photo-in/{FileName}.jpg",
       "connection": "AzureWebJobsStorage"
     },
     {
       "type": "blob",
       "name": "outputBlob",
-      "path": "photo-out/{DateTime}.jpg",
+      "path": "photo-out/{FileName}-Categorized.jpg",
       "connection": "AzureWebJobsStorage",
       "direction": "out"
     }
