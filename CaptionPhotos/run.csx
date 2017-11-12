@@ -17,7 +17,8 @@ using ImageResizer;
 static string VISION_API_ENDPOINT = Environment.GetEnvironmentVariable("VISION_API_ENDPOINT");
 // Computer Vision API Key 
 static string VISION_API_KEY = Environment.GetEnvironmentVariable("VISION_API_KEY");
-// QueryString containing the options required when calling the Computer Vision API
+// QueryString containing the options required when calling the Computer Vision API. For example: (
+// "visualFeatures=Categories,Tags,Description,Faces,ImageType,Color&details=celebrities,landmarks&language=en")
 static string VISON_API_QUERYSTRING = Environment.GetEnvironmentVariable("VISION_API_QUERYSTRING");
 
 /*
@@ -25,8 +26,9 @@ static string VISON_API_QUERYSTRING = Environment.GetEnvironmentVariable("VISION
  */
 public static void Run(CloudBlockBlob triggerBlob, Stream outputBlob, TraceWriter log)
 {  
+
+    log.Info($"### Function triggered on file: {triggerBlob.Name}");
     var FileName = Path.GetFileNameWithoutExtension(triggerBlob.Name);
-    log.Info($"### Funciton triggered on file: {FileName}");
   
     // Build simple JSON request containing blob URL and POST to Computer Vision API
     // Note: we just pass the URL of the blob (image file) to the API

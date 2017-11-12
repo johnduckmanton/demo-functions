@@ -10,7 +10,7 @@
     {
       "type": "blob",
       "name": "outputBlob",
-      "path": "photo-out/{FileName}-Categorized.jpg",
+      "path": "photo-out/{FileName}-categorized.jpg",
       "connection": "AzureWebJobsStorage",
       "direction": "out"
     }
